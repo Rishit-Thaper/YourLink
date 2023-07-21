@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+
+const user = require('./routes/userRoutes')
+const link = require('./routes/linkRoutes')
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
@@ -17,3 +20,6 @@ mongoose.connect(process.env.MONGODB_URI,{UseNewUrlParser: true, UseUnifiedTopol
     .catch((error)=>{
         console.log(error);
     })
+
+    app.use('/link', link);
+    app.use('/user', user);
